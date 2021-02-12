@@ -20,7 +20,7 @@ export const FavouritesBar = ({ favourites, onNavigate }) => {
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {favourites.map((restaurant) => {
-          const key = restaurant.name;
+          const key = restaurant.placeId;
           return (
             <Spacer key={key} position="left" size="medium">
               <TouchableOpacity

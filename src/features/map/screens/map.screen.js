@@ -12,7 +12,7 @@ const Map = styled(MapView)`
   width: 100%;
 `;
 
-export const MapScreen = ({ navigation }) => {
+const RestaurantMap = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
   const [latDelta, setLatDelta] = useState(0);
@@ -40,7 +40,7 @@ export const MapScreen = ({ navigation }) => {
         {restaurants.map((restaurant) => {
           return (
             <MapView.Marker
-              key={restaurant.name}
+              key={restaurant.placeId}
               title={restaurant.name}
               coordinate={{
                 latitude: restaurant.geometry.location.lat,
@@ -60,4 +60,19 @@ export const MapScreen = ({ navigation }) => {
       </Map>
     </React.Fragment>
   );
+};
+
+export const MapScreen = ({ navigation }) => {
+  const { location } = useContext(LocationContext);
+  if (!location) {
+    return (
+      <Map
+        region={{
+          latitude: 0,
+          longitude: 0,
+        }}
+      />
+    );
+  }
+  return <RestaurantMap navigation={navigation} />;
 };

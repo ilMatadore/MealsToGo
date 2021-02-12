@@ -39,7 +39,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     <RestaurantCard elevation={5}>
       <View>
         <Favourite restaurant={restaurant} />
-        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+        <RestaurantCardCover key={placeId} source={{ uri: photos[0] }} />
       </View>
       <Info>
         <Text variant="label">{name}</Text>
@@ -61,7 +61,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             <Spacer position="left" size="large">
               {isOpenNow && (
                 <SvgXml
-                  key={Math.random()}
+                  key={`open-${placeId}`}
                   xml={isOpen}
                   width={20}
                   height={20}
